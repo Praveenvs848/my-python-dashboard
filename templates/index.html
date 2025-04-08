@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdfdfd;
+        
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 30px 0 10px;
+        }
+
+        .search-bar {
+            padding: 10px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 40%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .update-btn, .delete-btn {
+            padding: 8px 16px;
+            font-size: 15px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .update-btn {
+            background-color: #007bff;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .add-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Employee Details</h2>
+
+    <div class="search-bar">
+        <form method="POST" action="{{ url_for('index') }}">
+            <input type="text" name="keyword" placeholder="Search by name, email, contact, or address">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Employee Name</th>
+            <th>Email Address</th>
+            <th>Password</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Contact</th> <!-- Added contact header -->
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee[0] }}</td>
+            <td>{{ employee[1] }}</td>
+            <td>{{ employee[2] }}</td>
+            <td>{{ employee[3] }}</td>
+            <td>{{ employee[4] }}</td>
+            <td>{{ employee[5] }}</td>
+            <td>{{ employee[6] }}</td> <!-- Contact column value -->
+            <td><a class="update-btn" href="{{ url_for('edit_employee', id=employee[0]) }}">Update</a></td>
+            <td><a class="delete-btn" href="{{ url_for('delete_employee', id=employee[0]) }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="add-container">
+        <a class="add-btn" href="{{ url_for('add_employee') }}">Create New User</a>
+    </div>
+</body>
+</html>
