@@ -8,6 +8,7 @@ conn = mysql.connector.connect(
     user="root",
     password="praveen@2000",  # Use your MySQL root password
     database="user_dashboard"
+    port=3306
 )
 cursor = conn.cursor()
 
