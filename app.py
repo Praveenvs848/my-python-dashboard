@@ -4,10 +4,10 @@ import mysql.connector
 app = Flask(__name__)
 
 conn = mysql.connector.connect(
-    host="localhost",
+    host="mysql",  # Use the service name defined in your docker-compose.yml
     user="root",
-    password="praveen@2000",  # use your MySQL password
-    database="user_dashboard"  # use your database name
+    password="praveen@2000",  # Use your MySQL root password
+    database="user_dashboard"
 )
 cursor = conn.cursor()
 
