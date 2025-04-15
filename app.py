@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 
 app = Flask(__name__)
-
 conn = mysql.connector.connect(
-    host="mysql",  # Use the service name defined in your docker-compose.yml
+    host="mysql",
     user="root",
-    password="praveen@2000",  # Use your MySQL root password
+    password="praveen@2000",
     database="user_dashboard",
     port=3306
 )
+
 cursor = conn.cursor()
 
 @app.route('/', methods=['GET', 'POST'])
